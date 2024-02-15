@@ -1,0 +1,210 @@
+:root {
+  --text-color: rgb(60, 167, 255);
+  --shadow-color: rgba(46, 160, 253, 0.288);
+  --gradation-top-color: rgb(77, 185, 248);
+  --gradation-bottom-color: rgb(231, 214, 248);
+  --hover-answer-shwdow-color: rgb(178, 147, 206);
+}
+
+/* 전체 */
+.mbtiLayout {
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(
+    to bottom,
+    var(--gradation-top-color),
+    var(--gradation-bottom-color)
+  );
+}
+
+/* 시작페이지 */
+.startPageLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  animation-name: fadeIn;
+  animation-duration: 1.5s;
+}
+
+.startLogo {
+  display: inline-block;
+  font-size: 40px;
+  font-weight: 650;
+  pointer-events: none;
+  color: var(--text-color);
+  background-color: white;
+  border-radius: 50%;
+  padding: 20px 40px;
+  margin-bottom: 46px;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+}
+
+.startLogo:before {
+  content: "";
+  position: absolute;
+  background: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  bottom: calc(var(--vh, 1vh) * 47);
+  right: 50vw;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+}
+
+.startLogo:after {
+  content: "";
+  position: absolute;
+  background: white;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  bottom: calc(var(--vh, 1vh) * 46);
+  right: 50vw;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+}
+
+.startButton {
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 550;
+  block-size: 30px;
+}
+
+.startButton:hover {
+  font-size: 30px;
+  color: var(--text-color);
+  text-shadow: 1.5px 1.5px var(--shadow-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 테스트 페이지 */
+.testPageLayout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: white;
+  overflow: hidden;
+}
+
+.testPageTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0px;
+  font-weight: 650;
+}
+
+.testPageTitle div:nth-child(1) {
+  font-size: 40px;
+}
+
+.testPageTitle div:nth-child(2) {
+  font-size: 25px;
+  padding-top: 20px;
+}
+
+.questionList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.questionList::-webkit-scrollbar {
+  display: none;
+}
+
+.questionItemLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: 650;
+  color: var(--text-color);
+  background-color: white;
+  padding: 0px 10px;
+  margin: 20px;
+  border-radius: 30px;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+  height: calc(var(--vh, 1vh) * 20);
+  width: 65vw;
+  text-align: center;
+  pointer-events: none;
+}
+
+.answerItemLayout {
+  font-size: 25px;
+  font-weight: 650;
+  color: var(--text-color);
+  background-color: white;
+  border: none;
+  margin: 20px;
+  border-radius: 30px;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+  height: calc(var(--vh, 1vh) * 8);
+  width: 65vw;
+  cursor: pointer;
+}
+
+.answerItemLayout:hover {
+  background-color: var(--gradation-bottom-color);
+  box-shadow: 1.5px 1.5px var(--hover-answer-shwdow-color);
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .questionItemLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-color);
+    background-color: white;
+    padding: 0px 10px;
+    margin: 15px;
+    border-radius: 30px;
+    box-shadow: 1.5px 1.5px var(--shadow-color);
+    height: calc(var(--vh, 1vh) * 20);
+    width: 80vw;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .answerItemLayout {
+    font-size: 15px;
+    font-weight: 650;
+    color: var(--text-color);
+    background-color: white;
+    border: none;
+    margin: 15px;
+    border-radius: 30px;
+    box-shadow: 1.5px 1.5px var(--shadow-color);
+    height: calc(var(--vh, 1vh) * 9);
+    width: 80vw;
+    cursor: pointer;
+  }
+}
+/* 결과 페이지 */
