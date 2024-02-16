@@ -25,7 +25,10 @@ function App() {
       q: ["친한 친구들이랑 놀다가 집에 돌아오는 길, 그때 내 생각은?"],
       a: [
         { type: "I", text: "재밌었지만 피곤해서 빨리 집에 가서 쉬고 싶어." },
-        { type: "E", text: "간만에 활력도 돌고 즐거운 시간 보내서 재밌었어." },
+        {
+          type: "E",
+          text: "즐거운 시간 보내서 재밌었어! 이렇게 노니까 힘이 나는거 같아.",
+        },
       ],
     },
     {
@@ -120,7 +123,7 @@ function App() {
       a: [
         {
           type: "J",
-          text: "음식이 모자라지는 않겠지? 지난번에 이정도 시켰다가 모자랐을 때 몇 명이 왔더라?",
+          text: "음식이 모자라지는 않겠지? 저번에 이정도 시켰다가 모자랐을 때 몇 명이 왔더라?",
         },
         { type: "P", text: "일단 이정도 준비하고 모자라면 더 시켜먹지 뭐" },
       ],
@@ -142,18 +145,21 @@ function App() {
     { name: "P", count: 0 },
   ]);
 
-  const calculateMbti = (e) => {
-    const type = e.target.value;
-    setMbtiList((prev) => {
-      prev.map((val) => {
-        if (val.name === type) {
-          val.count += 1;
-        }
-      });
-      return prev;
-    });
+  const calculateMbti = (idx, selectedType) => {
+    const type = selectedType;
+    let ls = mbtiList;
+    for (let i = 0; i < ls.length; i++) {
+      if (ls[i].name === type) {
+        ls[i].count += 1;
+      }
+    }
+    setMbtiList(ls);
     console.log(mbtiList);
-    setPage((prev) => prev + 1);
+    setPage(page + 1);
+
+    if (idx + 1 === questionList.length) {
+      getMbtiResult();
+    }
   };
 
   function randomValueFromQuestionArray(array) {
@@ -182,6 +188,182 @@ function App() {
   const [randomQuestionList, setRandomQuestionList] = useState(
     randomValueFromQuestionArray(questionList)
   );
+
+  const [mbtiResult, setMbtiResult] = useState([]);
+
+  function getMbtiResult() {
+    let mbtis = [
+      {
+        mbti: "ENTP",
+        summery: "뜨거운 논쟁을 즐기는 변론가",
+        contents: [
+          "박학다식하고, 독창적이에요",
+          "하나에 꽂히면 그것에만 집중해요",
+          "매일 반복되는 일상 싫어해요",
+        ],
+      },
+      {
+        mbti: "ENTJ",
+        summery: "대담한 통솔자",
+        contents: [
+          "철저한 준비를 하고, 활동적이에요",
+          "도전 정신이 강해요",
+          "현실적이고 논리적이에요",
+        ],
+      },
+      {
+        mbti: "ENFP",
+        summery: "재기발랄한 활동가",
+        contents: [
+          "상상력이 풍부하고, 순발력이 뛰어나요",
+          "사람을 너무 좋아해서 상처 받아도 잘 못 끊어내요",
+          "창의적이고 자유로운 삶을 선호해요",
+        ],
+      },
+      {
+        mbti: "ENFJ",
+        summery: "정의로운 사회운동가",
+        contents: [
+          "사교적이고, 타인의 의견을 존중해요",
+          "주변사람을 잘 챙겨줘요",
+          "객관적이고 멘탈이 강해요",
+        ],
+      },
+      {
+        mbti: "ESTP",
+        summery: "모험을 즐기는 사업가",
+        contents: [
+          "느긋하고, 관용적이며, 타협을 잘해요",
+          "현실적 문제 해결에 능숙해요",
+          "말보다 직접 부딪쳐서 경험하는 것 선호해요",
+        ],
+      },
+      {
+        mbti: "ESTJ",
+        summery: "엄격한 관리자",
+        contents: [
+          "추진력이 좋고, 체계적으로 일해요",
+          "호불호가 확실해요",
+          "계획이 틀어지거나 방해받는 거 싫어해요",
+        ],
+      },
+      {
+        mbti: "ESFP",
+        summery: "자유로운 영혼의 연예인",
+        contents: [
+          "호기심이 많으며, 개방적이에요",
+          "사교성이 좋아서 모르는 사람들과도 잘 어울려요",
+          "미적 감각이 좋고 관찰력이 뛰어나요",
+        ],
+      },
+      {
+        mbti: "ESFJ",
+        summery: "사교적인 외교관",
+        contents: [
+          "친절하고 동정심이 많아요",
+          "타인에 관한 소소한 것까지 잘 기억하고 배려해요",
+          "사람들에게 먼저 다가가는 편이에요",
+        ],
+      },
+      {
+        mbti: "INTP",
+        summery: "논리적인 사색가",
+        contents: [
+          "잠재력과 가능성을 중요시해요",
+          "감수성이 풍부해요",
+          "주관이 뚜렷해요",
+        ],
+      },
+      {
+        mbti: "INTJ",
+        summery: "용의주도한 전략가",
+        contents: [
+          "의지가 강하고, 독립적이에요",
+          "분석력이 뛰어나요",
+          "공상을 많이 하는 편이에요",
+        ],
+      },
+      {
+        mbti: "INFP",
+        summery: "열정적인 중재자",
+        contents: [
+          "친절하고 섬세해요",
+          "상대방을 잘 이해하지만, 상처도 쉽게 받아요",
+          "꿈이나 이상을 소중하게 생각해요",
+        ],
+      },
+      {
+        mbti: "INFJ",
+        summery: "선의의 옹호자",
+        contents: [
+          "높은 통찰력으로 사람들에게 영감을 줘요",
+          "눈치가 빠른편이에요",
+          "사람들과 잘 어울리면서도 혼자있는 시간 좋아해요",
+        ],
+      },
+      {
+        mbti: "ISTP",
+        summery: "만능 재주꾼",
+        contents: [
+          "과묵하고 분석적이며, 적응력이 강해요",
+          "일을 효율적으로 해요",
+          "힘든 얘기를 잘 안해요",
+        ],
+      },
+      {
+        mbti: "ISTJ",
+        summery: "청렴결백한 논리주의자",
+        contents: [
+          "책임감이 강해요",
+          "원리 원칙에 충실해요",
+          "즉흥적인 거 싫어해요",
+        ],
+      },
+      {
+        mbti: "ISFP",
+        summery: "호기심 많은 예술가",
+        contents: [
+          "낙천적이고 겸손해요",
+          "인간 관계에 신경 많이 쓰고 남 눈치도 많이 봐요",
+          "혼자 있는 시간동안 에너지를 얻어요",
+        ],
+      },
+      {
+        mbti: "ISFJ",
+        summery: "용감한 수호자",
+        contents: [
+          "차분하고 헌신적이며, 인내심이 강해요",
+          "다른 사람 이야기를 잘 들어줘요",
+          "배려 넘치고 공감 능력이 좋아요",
+        ],
+      },
+    ];
+
+    let IorE =
+      mbtiList.find((data) => data.name === "I").count >
+      mbtiList.find((data) => data.name === "E").count
+        ? "I"
+        : "E";
+    let SorN =
+      mbtiList.find((data) => data.name === "S").count >
+      mbtiList.find((data) => data.name === "N").count
+        ? "S"
+        : "N";
+    let TorF =
+      mbtiList.find((data) => data.name === "T").count >
+      mbtiList.find((data) => data.name === "F").count
+        ? "T"
+        : "F";
+    let PorJ =
+      mbtiList.find((data) => data.name === "P").count >
+      mbtiList.find((data) => data.name === "J").count
+        ? "P"
+        : "J";
+
+    let mbti = IorE + SorN + TorF + PorJ;
+
+    setMbtiResult(mbtis.filter((data) => data.mbti === mbti)[0]);
+  }
 
   return (
     <div className="mbtiLayout">
@@ -226,8 +408,9 @@ function App() {
               {val.a.map((aval, aidx) => (
                 <div key={aidx}>
                   <button
-                    onClick={calculateMbti}
-                    value={aval.type}
+                    onClick={() => {
+                      calculateMbti(idx, aval.type);
+                    }}
                     className="answerItemLayout"
                   >
                     {aval.text}
@@ -239,7 +422,27 @@ function App() {
         </div>
       ) : (
         //결과 페이지
-        <div>결과 페이지</div>
+        <div className="resultPageLayout">
+          <div className="resultPageTitle">
+            <div>나의 MBTI는?</div>
+            <div>{mbtiResult.mbti}</div>
+            <div>{mbtiResult.summery}</div>
+          </div>
+          <div className="mbtiPointsLayout">
+            <p>{mbtiResult.mbti}는요!</p>
+            {mbtiResult.contents.map((val, idx) => (
+              <div key={idx} style={{ paddingBottom: "10px" }}>
+                {val}
+              </div>
+            ))}
+          </div>
+          <div
+            className="reTestButton"
+            onClick={() => window.location.reload()}
+          >
+            다시하기
+          </div>
+        </div>
       )}
     </div>
   );

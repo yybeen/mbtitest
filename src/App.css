@@ -164,6 +164,7 @@
   box-shadow: 1.5px 1.5px var(--shadow-color);
   height: calc(var(--vh, 1vh) * 8);
   width: 65vw;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -207,4 +208,114 @@
     cursor: pointer;
   }
 }
+
 /* 결과 페이지 */
+.resultPageLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  overflow: hidden;
+}
+
+.resultPageTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0px;
+  font-weight: 650;
+}
+
+.resultPageTitle div:nth-child(1) {
+  font-size: 40px;
+}
+
+.resultPageTitle div:nth-child(2) {
+  color: rgb(235, 222, 250);
+  font-size: 40px;
+  padding-top: 20px;
+}
+
+.resultPageTitle div:nth-child(3) {
+  font-size: 25px;
+}
+
+.mbtiPointsLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: 650;
+  color: var(--text-color);
+  background-color: white;
+  padding: 0px 10px;
+  border-radius: 30px;
+  box-shadow: 1.5px 1.5px var(--shadow-color);
+  height: calc(var(--vh, 1vh) * 40);
+  width: 65vw;
+  text-align: center;
+  pointer-events: none;
+}
+
+.mbtiPointsLayout p:nth-child(1) {
+  margin-top: -17px;
+  font-size: 30px;
+}
+
+.reTestButton {
+  margin-top: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 550;
+  block-size: 30px;
+}
+
+.reTestButton:hover {
+  font-size: 30px;
+  color: var(--text-color);
+  text-shadow: 1.5px 1.5px var(--shadow-color);
+}
+
+@media (max-width: 480px) {
+  .mbtiPointsLayout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-color);
+    background-color: white;
+    padding: 0px 10px;
+    border-radius: 30px;
+    box-shadow: 1.5px 1.5px var(--shadow-color);
+    height: calc(var(--vh, 1vh) * 40);
+    width: 80vw;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .mbtiPointsLayout p:nth-child(1) {
+    margin-top: -10px;
+    font-size: 17px;
+  }
+
+  .reTestButton {
+    margin-top: 50px;
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: 700;
+    block-size: 30px;
+  }
+
+  .reTestButton:hover {
+    font-size: 22px;
+    color: var(--text-color);
+    text-shadow: 1.5px 1.5px var(--shadow-color);
+  }
+}
